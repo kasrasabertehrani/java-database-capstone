@@ -8,6 +8,7 @@ import lombok.Setter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 
 @Entity
@@ -15,6 +16,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @NoArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
 public class Patient {
 
     @Id
@@ -42,6 +44,9 @@ public class Patient {
     @Pattern(regexp = "^\\+?[0-9\\-\\s]+$")
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
+
+    @Column(name = "address", nullable = false)
+    private String address;
 
     @NotNull
     @Column(name = "date_of_birth", nullable = false)
